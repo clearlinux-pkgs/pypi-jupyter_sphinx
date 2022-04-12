@@ -4,7 +4,7 @@
 #
 Name     : pypi-jupyter_sphinx
 Version  : 0.3.2
-Release  : 3
+Release  : 4
 URL      : https://files.pythonhosted.org/packages/19/b0/46405f8cea06cc60a851db29486c10244691d014e4ff21a887a17fbed574/jupyter_sphinx-0.3.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/19/b0/46405f8cea06cc60a851db29486c10244691d014e4ff21a887a17fbed574/jupyter_sphinx-0.3.2.tar.gz
 Summary  : Jupyter Sphinx Extensions
@@ -14,9 +14,6 @@ Requires: pypi-jupyter_sphinx-license = %{version}-%{release}
 Requires: pypi-jupyter_sphinx-python = %{version}-%{release}
 Requires: pypi-jupyter_sphinx-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-Provides: jupyter_sphinx
-Provides: jupyter_sphinx-python
-Provides: jupyter_sphinx-python3
 BuildRequires : pypi(ipython)
 BuildRequires : pypi(ipywidgets)
 BuildRequires : pypi(nbconvert)
@@ -71,7 +68,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641451795
+export SOURCE_DATE_EPOCH=1649776232
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
