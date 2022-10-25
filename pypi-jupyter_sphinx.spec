@@ -4,7 +4,7 @@
 #
 Name     : pypi-jupyter_sphinx
 Version  : 0.4.0
-Release  : 11
+Release  : 12
 URL      : https://files.pythonhosted.org/packages/33/55/9f6643c7ab182ed6f0b645ea8ff57d3b801fc3a0f99ce9c11d5ad6e14841/jupyter_sphinx-0.4.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/33/55/9f6643c7ab182ed6f0b645ea8ff57d3b801fc3a0f99ce9c11d5ad6e14841/jupyter_sphinx-0.4.0.tar.gz
 Summary  : Jupyter Sphinx Extensions
@@ -71,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656343087
+export SOURCE_DATE_EPOCH=1666713840
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -96,7 +96,7 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-jupyter_sphinx
-cp %{_builddir}/jupyter_sphinx-0.4.0/LICENSE %{buildroot}/usr/share/package-licenses/pypi-jupyter_sphinx/ae6eafc2360a1460abcaa0567a06a78fd44f0c5e
+cp %{_builddir}/jupyter_sphinx-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-jupyter_sphinx/ae6eafc2360a1460abcaa0567a06a78fd44f0c5e || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
