@@ -4,21 +4,21 @@
 #
 Name     : pypi-jupyter_sphinx
 Version  : 0.4.0
-Release  : 12
+Release  : 14
 URL      : https://files.pythonhosted.org/packages/33/55/9f6643c7ab182ed6f0b645ea8ff57d3b801fc3a0f99ce9c11d5ad6e14841/jupyter_sphinx-0.4.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/33/55/9f6643c7ab182ed6f0b645ea8ff57d3b801fc3a0f99ce9c11d5ad6e14841/jupyter_sphinx-0.4.0.tar.gz
 Summary  : Jupyter Sphinx Extensions
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: pypi-jupyter_sphinx-license = %{version}-%{release}
-Requires: pypi-jupyter_sphinx-python = %{version}-%{release}
-Requires: pypi-jupyter_sphinx-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(ipython)
 BuildRequires : pypi(ipywidgets)
 BuildRequires : pypi(nbconvert)
 BuildRequires : pypi(nbformat)
 BuildRequires : pypi(sphinx)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 ``jupyter-sphinx`` enables running code embedded in Sphinx documentation and
@@ -26,38 +26,6 @@ BuildRequires : pypi(sphinx)
         for rich output such as images and even Jupyter interactive widgets.
         
         ## Installation
-
-%package license
-Summary: license components for the pypi-jupyter_sphinx package.
-Group: Default
-
-%description license
-license components for the pypi-jupyter_sphinx package.
-
-
-%package python
-Summary: python components for the pypi-jupyter_sphinx package.
-Group: Default
-Requires: pypi-jupyter_sphinx-python3 = %{version}-%{release}
-
-%description python
-python components for the pypi-jupyter_sphinx package.
-
-
-%package python3
-Summary: python3 components for the pypi-jupyter_sphinx package.
-Group: Default
-Requires: python3-core
-Provides: pypi(jupyter_sphinx)
-Requires: pypi(ipython)
-Requires: pypi(ipywidgets)
-Requires: pypi(nbconvert)
-Requires: pypi(nbformat)
-Requires: pypi(sphinx)
-
-%description python3
-python3 components for the pypi-jupyter_sphinx package.
-
 
 %prep
 %setup -q -n jupyter_sphinx-0.4.0
@@ -71,15 +39,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1666713840
+export SOURCE_DATE_EPOCH=1672286170
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -113,14 +81,3 @@ popd
 
 %files
 %defattr(-,root,root,-)
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/pypi-jupyter_sphinx/ae6eafc2360a1460abcaa0567a06a78fd44f0c5e
-
-%files python
-%defattr(-,root,root,-)
-
-%files python3
-%defattr(-,root,root,-)
-/usr/lib/python3*/*
